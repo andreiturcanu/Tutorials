@@ -2,7 +2,7 @@
 
 > Access to fetch at 'https://www.yourapi.com' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
 
-If you have ever built a web app and wants to interact with a REST API. You might be familiar with this error. If you also build the API, you might wonder: why it worked with Postman when you're testing your API, it may even work with mobile apps as well. _There must be something wrong with my web app._ However, it is not the case.
+If you have ever built a web app and wants to interact with a REST API, you might be familiar with this error. If you also build the API, you might wonder: why it worked with Postman when you're testing your API, it may even work with mobile apps as well. _There must be something wrong with my web app._ However, it is not the case.
 
 This article will give you a overall idea on what CORS is, and how to **_fix_** it.
 
