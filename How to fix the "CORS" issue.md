@@ -4,13 +4,13 @@
 
 If you have ever built a web app and wants to interact with a REST API, you might be familiar with this error. If you also build the API, you might wonder: why it worked with Postman when you're testing your API, it may even work with mobile apps as well. _There must be something wrong with my web app._ However, it is not the case.
 
-This article will give you a overall idea on what CORS is, and how to **_fix_** it.
+This article will give you a overall idea on what CORS is, and how to '_fix_' it.
 
 # CORS
 
 ## What is CORS
 
-**CORS** stands for Cross-Origin Resource Sharing. It is a mechanism that allows the browser to restrict sending requests to a different domain.
+**CORS** stands for Cross-Origin Resource Sharing. It is a mechanism that restricts requests coming from a different domain.
 
 ## Why CORS
 
@@ -40,13 +40,11 @@ Here's a code snippet from [https://enable-cors.org/server_nginx.html](https://e
 if ($request_method = 'OPTIONS') {
   add_header 'Access-Control-Allow-Origin' '*';
   add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
-  #
+
   # Custom headers and headers various browsers *should* be OK with but aren't
-  #
   add_header 'Access-Control-Allow-Headers' 'DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range';
-  #
+
   # Tell client that this pre-flight info is valid for 20 days
-  #
   add_header 'Access-Control-Max-Age' 1728000;
   add_header 'Content-Type' 'text/plain; charset=utf-8';
   add_header 'Content-Length' 0;
@@ -86,11 +84,11 @@ The above code block shows how to add the additional header after the request is
 
 # Scenario 3: I'm just a web developer
 
-No offense to front-end developers, but you might be in the 'worst' scenario here. However, it is not your fault and it is quite common. You might just want to interact with a third party API and it just keeps complaining about the CORS issue. We will talk about the possible solutions here.
+No offense to front-end developers, but you might be in the 'worst' scenario here. However, it is not your fault and it is quite common. You might just want to interact with a third party API and it just keeps complaining about CORS. We will talk about the possible solutions here.
 
-The **ideal solution** would be inform the API owner about this issue, since technically this is **their fault**. However, you might not get an immediate response. What's worse, you have encounter an arrogant backend developer educating you what is a REST API and that it should act identically to any clients, and that they found no issue with using it and it's your own misconfiguration. Please refer them to this blog if this is your situation. However, in the meantime, you may try the next solution.
+The ideal solution would be inform the API owner about this issue, since technically this is **their fault**. However, you might not get an immediate response. What's worse, you might encounter an arrogant backend developer educating you what a REST API is and that it should act identically to any clients. Since they found no issue with using it, it's your own misconfiguration. Please refer them to this blog if this is your situation. However, in the meantime, you may try the next solution.
 
-Another solution would be building a proxy API that servers as a bridge to the third party API. It sounds a bit hacky but it might be the only working solution you can have if you wish your web app to ship and work. The proxy API basically receives the requests from your web app and send it to the third party API, then respond with what's received there. You can then configure your own API as in the previous two scenarios.
+Another solution would be building a proxy API that servers as a bridge to the third party API. It sounds a bit hacky but it might be the only working solution you can have if you wish your web app to ship and work. The proxy API receives the requests from your web app and send it to the third party API, then respond with what's received there. Since it doesn't go through the browser, it circumvent the CORS issue You can then configure your own API as in the previous two scenarios.
 
 The last solution would be using browser plugins to inject the needed headers into the response. This is not recommended since it's only 'fooling yourself', and it would not work on other computers, for instance, your users'. However, it is still useful if you're testing things around locally and would like to see some results ASAP. There are usually plenty of such plugins for each browser. One of them is the [Allow-Control-Allow-Origin](https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi) extension for **Chrome**.
 
